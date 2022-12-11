@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<!--Vertex Shader 에 전송하는 변수 vPosition 이다.-->
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+attribute vec4 vColor;
+
+varying vec4 fColor;
+
+void main()
+{
+    gl_Position = vPosition;
+    fColor = vColor;
+    gl_PointSize = 20.0; //네모의 크기 20으로 수정
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+varying vec4 fColor;
+void main()
+{
+    gl_FragColor = fColor;
+}
+</script>
+
+<!--
+webgl-utils.js : 웹 사이트의 Common 디렉토리에 있는 WebGL context를
+설정하는 표준 유틸리티
+initShaders.js : shader 를 읽고, 컴파일하고, 링크하는 JS 와 WebGL 코드
+MV.js : 자체 행렬 벡터 패키지
+free.js : 응용 프로그램 파일
+-->
+<script type="text/javascript" src="webgl-utils.js"></script>
+<script type="text/javascript" src="initShaders.js"></script>
+<script type="text/javascript" src="MV.js"></script>
+<script type="text/javascript" src="free.js"></script>
+
+<body>
+<div>
+<canvas id="gl-canvas" width="512" height="512"></canvas>
+</div>
+<!-- select태그로 네모 색상 값 정하기 , div 태그를 이용하여 canvas 아래에 위치 -->
+<select id = "mymenu" size = "7">
+    <option value = "0">Black</option>
+    <option value = "1">Red</option>
+    <option value = "2">Yellow</option>
+    <option value = "3">Green</option>
+    <option value = "4">Blue</option>
+    <option value = "5">Magenta</option>
+    <option value = "6">Cyan</option>
+</select>
+</body>
+</html>
